@@ -18,6 +18,7 @@
 import React,{useState,useEffect} from "react";
 // react plugin used to create charts
 import { Line } from "react-chartjs-2";
+
 // reactstrap components
 
 import {
@@ -63,8 +64,7 @@ const ExerciseManagement = () => {
     useEffect(() => {
       getexercises();
     }, []);
-    console.log(exercises);
-   
+ 
 
 
 
@@ -76,6 +76,8 @@ const ExerciseManagement = () => {
         const jsonData = await response.json();
   
         setairports(jsonData);
+        
+        
       } catch (err) {
         console.error(err.message);
       }
@@ -85,6 +87,8 @@ const ExerciseManagement = () => {
       useEffect(() => {
         getairports();
       }, []);
+      
+
     
 
     // GET WEATHERS  ( GET REQUEST )
@@ -107,7 +111,7 @@ const ExerciseManagement = () => {
       getWeathers();
     }, []);
 
-
+   
 
 
 
@@ -115,8 +119,8 @@ const ExerciseManagement = () => {
     const [name, setname] = useState("");
     const [airport, setAirport] = useState("");
     const [weather, setWeather] = useState("");
-  
-
+    
+    
     function Exercise(name, airport_iata, weather_id) {
       this.name = name;
       this.airport_iata = airport_iata;
@@ -124,13 +128,7 @@ const ExerciseManagement = () => {
     }
     
     
-    function getByValue(map, searchValue) {
-      for (let [key, value] of map.entries()) {
-        console.log(key);
-        if (value === searchValue)
-          return key;
-      }
-    }
+    
     
     const onSubmitForm = async e => {
 
@@ -156,7 +154,7 @@ const ExerciseManagement = () => {
        
           
           const exercise = new Exercise(exerciseName, searchAirport(airport,airports), searchWeather(weather,Weathers));
-         
+          console.log(exercise);
           const response = await fetch("http://localhost:5000/exercice", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -181,7 +179,7 @@ const ExerciseManagement = () => {
           method: "DELETE"
         });
   
-        setexerciseName(exercises.filter(exercise => exercise.id !== id));
+        setexercises(exercises.filter(exercise => exercise.id !== id));
       } catch (err) {
         console.error(err.message);
       }
@@ -256,7 +254,7 @@ const ExerciseManagement = () => {
 
                         <td className="text-center">{exercise.w_name}</td>                 
                         <td className="text-right">
-                            {/* <EditExercise weather={exercise} /> */}
+                            <EditExercise exercise={exercise} /> 
                             <Button className="btn-icon" color="danger" size="sm"
                               onClick={() => deleteExercise(exercise.id)}>
                               <i className="fa fa-times" />

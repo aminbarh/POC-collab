@@ -181,6 +181,7 @@ import EditWeather from "components/EditWeather";
                   <td className="text-center">{weather.visibility}</td>
                   <td className="text-right">
                   <EditWeather weather={weather}/>
+                  
                     <Button className="btn-icon" color="danger" size="sm" 
                     onClick={() => deleteWeather(weather.id)}>
                       <i className="fa fa-times" />

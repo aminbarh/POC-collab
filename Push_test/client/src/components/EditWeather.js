@@ -65,9 +65,8 @@ const EditWeather =(object) =>
             <Fragment>
               
                 <Button className="btn-icon" color="success" size="sm" onClick={toggleModalDemo}>
-                          <i className="fa fa-edit"></i>
-                         
-                        </Button>
+                          <i className="fa fa-edit"></i>            
+                </Button>
                 <Modal isOpen={modalDemo} toggle={toggleModalDemo}>
                     <div className="modal-header">
                         <h5 className="modal-title" id="exampleModalLabel">
