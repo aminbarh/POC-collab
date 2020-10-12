@@ -24,9 +24,10 @@ import "assets/scss/blk-design-system-react.scss?v=1.1.0";
 import "assets/demo/demo.css";
 
 import Index from "views/Index.js";
-import AirportManagement from "views/examples/AirportManagement.js";
-import WeatherManagement from "views/examples/WeatherManagement.js";
-import ExerciseManagement from "views/examples/ExerciseManagement.js";
+import AirportManagement from "views/Management/AirportManagement.js";
+import WeatherManagement from "views/Management/WeatherManagement.js";
+import ExerciseManagement from "views/Management/ExerciseManagement.js";
+
 
 
 ReactDOM.render(

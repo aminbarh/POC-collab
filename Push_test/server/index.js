@@ -137,77 +137,81 @@ app.delete("/weathers/:id",async(req,res)=>
 
 
 
-//Exercice
+//Exercise
 
 
-//Create exercice
+//Create exercise
 
-app.post("/exercice",async(req,res) => 
+app.post("/exercise",async(req,res) => 
 {
 
     const name =req.body.name;
+    console.log(name);  
     const airport_iata =req.body.airport_iata;
     const weather_id =req.body.weather_id;
-    const newExercice = await pool.query(
-        "INSERT INTO exercice(name,airport_iata,weather_id) values($1,$2,$3) returning * ",
+    const newExercise = await pool.query(
+        "INSERT INTO exercise(name,airport_iata,weather_id) values($1,$2,$3) returning * ",
         [name,airport_iata,weather_id]
     );
-    res.json(newExercice.rows[0]);
+    res.json(newExercise.rows[0]);
 })
 
 
-//Get all exercices
+//Get all exercises
 
-app.get("/exercices",async(req,res)=>
+app.get("/exercises",async(req,res)=>
 {
-    const allExercices=await pool.query("SELECT * FROM Exercice;");
-    res.json(allExercices.rows);
+    const allExercises=await pool.query("SELECT * FROM Exercise;");
+    res.json(allExercises.rows);
 })
 
 
 
-//Get an exercice
-app.get("/exercices/:id",async(req,res)=>
+
+//Get an exercise
+app.get("/exercises/:id",async(req,res)=>
+
 {
     const id =req.params.id;
-    const exercice=await pool.query("select * from exercice where id = $1 ",[id]);
-    res.json(exercice.rows[0]);
+    const exercise=await pool.query("select * from exercise where id = $1 ",[id]);
+    res.json(exercise.rows[0]);
 })
 
-//Get an exercice by name
-app.get("/exercices/:name",async(req,res)=>
+//Get an exercise by name
+app.get("/exercises/:name",async(req,res)=>
 {
     const id =req.params.name;
-    const exercice=await pool.query("select * from exercice where name = $1 ",[name]);
-    res.json(exercice.rows[0]);
+    const exercise=await pool.query("select * from exercise where name = $1 ",[name]);
+    res.json(exercise.rows[0]);
 })
 
 
-//Get exercice with airport and weather names 
+//Get exercise with airport and weather names 
 
-app.get("/exercicesAdvanced",async(req,res)=>
+app.get("/exercisesAdvanced",async(req,res)=>
 {
-    const allExercices=await pool.query("SELECT e.id ,e.name as e_name ,a.name as a_name,w.name as w_name from airport a , exercice e , weather w where (a.iata=e.airport_iata and w.id=e.weather_id);");
-    res.json(allExercices.rows);
+    const allExercises=await pool.query("SELECT e.id ,e.name as e_name ,a.name as a_name,w.name as w_name from airport a , exercise e , weather w where (a.iata=e.airport_iata and w.id=e.weather_id);");
+    res.json(allExercises.rows);
 })
-//Update an exercice
-app.put("/exercices/:id",async(req,res)=>
+//Update an exercise
+app.put("/exercises/:id",async(req,res)=>
+
 {
     const id =req.params.id;
     const name =req.body.name;
     const airport_iata =req.body.airport_iata;
     const weather_id =req.body.weather_id;
-    const updateExercice=await pool.query("update exercice set name=$2,airport_iata=$3,weather_id=$4  where id = $1 ",[id,name,airport_iata,weather_id]);
-    res.json("Exercice was updated");
+    const updateExercise=await pool.query("update exercise set name=$2,airport_iata=$3,weather_id=$4  where id = $1 ",[id,name,airport_iata,weather_id]);
+    res.json("Exercise was updated");
 })
 
 
-//delete an exercice
-
-app.delete("/exercices/:id",async(req,res)=>
+//delete an exercise
+app.delete("/exercises/:id",async(req,res)=>
 {
     
     const id =req.params.id;
-    const deleteExercice=await pool.query("delete from exercice where id = $1 ",[id]);
-    res.json("exercice was deleted");
+    const deleteExercise=await pool.query("delete from exercise where id = $1 ",[id]);
+    res.json("exercise was deleted");
+
 })

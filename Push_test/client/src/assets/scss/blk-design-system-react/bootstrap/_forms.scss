@@ -11,6 +11,9 @@
   padding: $input-padding-y $input-padding-x;
   font-size: $font-size-base;
   line-height: $input-line-height;
+
+  color:$input-color;
+=======
   color: Black;//$input-color;
   background-color: $input-bg;
   background-clip: padding-box;
@@ -161,6 +164,9 @@ select.form-control {
   {
     color:black;
   }
+
+  
+
   color: white;
   &[size],
   &[multiple] {

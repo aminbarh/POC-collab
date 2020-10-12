@@ -1,0 +1,14 @@
+.mySelect  {
+        color: black !important;  
+  }
+
+
+  .myInput
+  {
+      color:Black;
+  }
+
+  .myInput:focus
+  {
+      color:Black;
+  }

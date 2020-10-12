@@ -4234,7 +4234,14 @@ button.close {
 .modal-body {
   position: relative;
   flex: 1 1 auto;
-  padding: 24px 24px 16px 24px; }
+
+  padding: 24px 24px 16px 24px;
+
+  
+}
+
+
+
 
 .modal-footer {
   display: flex;
