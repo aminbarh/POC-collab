@@ -1,4 +1,4 @@
-create database simex;
+create database poc;
 create table airport(
     iata varchar(3) primary key,
     name varchar(100) not null,

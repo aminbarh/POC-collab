@@ -1,6 +1,5 @@
 import React ,{useState,useEffect} from "react";
 
-
 // reactstrap components
 
 import {
@@ -18,6 +17,7 @@ import Footer from "components/Footer/Footer.js";
 
 import EditAirport from "components/EditAirport";
 
+
 const AirportManagement = () => {  
  
 
@@ -28,8 +28,6 @@ const AirportManagement = () => {
       this.lattitude = lattitude;
       this.longitude = longitude;
       }
-      
-
       const [iata, setiata] = useState("");
       const [name, setname] = useState("");
       const [lattitude, setlattitude] = useState("");
