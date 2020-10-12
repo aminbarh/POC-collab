@@ -1,7 +1,11 @@
+
 import React from "react";
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import HomePage from "views/HomePage";
 import Footer from "components/Footer/Footer.js";
+
+
+
 
 
 

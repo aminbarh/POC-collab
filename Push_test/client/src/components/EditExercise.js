@@ -10,9 +10,7 @@ import {
   } from "reactstrap";
 
 
-import {newClass} from "assets/css/style.css"
-
-const EditExercise =(object) => 
+const EditExercice =(object) => 
 {
     
     
@@ -76,8 +74,8 @@ const EditExercise =(object) =>
       this.airport_iata = airport_iata;
       this.weather_id = weather_id;
     }
-
     //Find airport iata by name
+
     function searchAirport(nameKey, myArray) {
         for (var i = 0; i < myArray.length; i++) {
             if (myArray[i].name === nameKey) {
@@ -87,6 +85,7 @@ const EditExercise =(object) =>
     }
 
     //Find weather id by name
+
     function searchWeather(nameKey, myArray) {
         for (var i = 0; i < myArray.length; i++) {
             if (myArray[i].name === nameKey) {
@@ -103,6 +102,7 @@ const EditExercise =(object) =>
 
         const updateExercise = async e =>
         {
+
             
             e.preventDefault();
             if(name!="")
@@ -118,6 +118,34 @@ const EditExercise =(object) =>
 
                 window.location = "/ExerciseManagement";
             }
+            e.preventDefault();
+           
+                function searchAirport(nameKey, myArray){
+                    for (var i=0; i < myArray.length; i++) {
+                        if (myArray[i].name === nameKey) {
+                            return myArray[i].iata;
+                        }
+                    }
+                }
+                function searchWeather(nameKey, myArray){
+                  for (var i=0; i < myArray.length; i++) {
+                      if (myArray[i].name === nameKey) {
+                          return myArray[i].id;
+                      }
+                  }
+              }
+        
+                
+                const id=Number(object.exercise.id);
+                const exercise = new Exercise (name,searchAirport(airport,airports),searchWeather(weather,Weathers));
+                const response = await fetch(`http://localhost:5000/exercices/${id}`,{
+                method:"PUT",
+                headers: {"content-type" : "application/json"},
+                body: JSON.stringify(exercise)
+        });
+    
+        
+        window.location="/ExerciseManagement";
         }
         return (
             <Fragment>
@@ -152,6 +180,12 @@ const EditExercise =(object) =>
                                     id="exerciseName"
                                     placeholder="Enter Exercise name"
                                     className="myInput"
+                                <Label for="exerciceName">Exercice name : </Label>
+                                <Input
+                                    type="text"
+                                    name="exerciceName"
+                                    id="exerciceName"
+                                    placeholder="Enter Exercice name"
                                     value={name}
                                     onChange={e => setname(e.target.value)}
                                 />
@@ -168,12 +202,22 @@ const EditExercise =(object) =>
                                             return <option key={airport.iata} value={airport.name}>{airport.name}</option>;
                                         })}
 
+
+                            <FormGroup>
+                                <FormGroup>
+                                    <Label for="chooseAirport">Choose Airport</Label>
+                                    <Input type="select" name="select" id="chooseAirport" value={airport} onChange={e => setAirport(e.target.value)}>
+                                        {airports.map(airport => {
+                                            return <option key={airport.iata} value={airport.name}>{airport.name}</option>;
+                                        })}
+
                                     </Input>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="chooseWeather">Choose Weather</Label>
                                     <Input type="select" name="select" id="chooseWeather"  className="mySelect" value={weather} onChange={e => setWeather(e.target.value)}>
                                         <option selected >Choose a weather</option>
+                                    <Input type="select" name="select" id="chooseWeather" value={weather} onChange={e => setWeather(e.target.value)}>
                                         {Weathers.map(weather => {
                                             return <option key={weather.id} value={weather.name}>{weather.name}</option>;
                                         })}
@@ -196,4 +240,4 @@ const EditExercise =(object) =>
             </Fragment>
         )
     }
-export default EditExercise;
+export default EditExercice;

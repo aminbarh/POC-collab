@@ -29,6 +29,7 @@ import WeatherManagement from "views/Management/WeatherManagement.js";
 import ExerciseManagement from "views/Management/ExerciseManagement.js";
 
 
+
 ReactDOM.render(
   <BrowserRouter>
     <Switch>

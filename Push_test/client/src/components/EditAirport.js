@@ -47,6 +47,7 @@ const EditAirport =(object) =>
         const updateAirport = async e =>
         {
             e.preventDefault();
+
             if (name != "" && iata!="") {
                 const airport = new Airport(iata, name, lattitude, longitude);
 
@@ -58,6 +59,18 @@ const EditAirport =(object) =>
 
                 window.location = "/AirportManagement";
             }
+
+            
+            const airport = new Airport(iata, name, lattitude, longitude);
+           
+            const response = await fetch(`http://localhost:5000/airports/${iata}`, {
+                method: "PUT",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify(airport)
+            });
+           
+            window.location = "/AirportManagement";
+
         }
 
         return (
@@ -91,7 +104,10 @@ const EditAirport =(object) =>
                                     type="text"
                                     name="IATA"
                                     id="IATA"
+
                                     className="myInput"
+
+
                                     placeholder="Enter IATA"
                                     value={iata} onChange={e => setiata(e.target.value)}
                                 />
@@ -102,7 +118,8 @@ const EditAirport =(object) =>
                                     type="text"
                                     name="AirportName"
                                     id="AirportName"
-                                    className="myInput"
+                                   className="myInput"
+
                                     placeholder="Enter Airport Name"
                                     value={name} onChange={e => setname(e.target.value)}
                                 />
@@ -145,4 +162,5 @@ const EditAirport =(object) =>
             </Fragment>
         )
     }
+
 export default EditAirport;

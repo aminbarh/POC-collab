@@ -167,8 +167,10 @@ app.get("/exercises",async(req,res)=>
 
 
 
+
 //Get an exercise
 app.get("/exercises/:id",async(req,res)=>
+
 {
     const id =req.params.id;
     const exercise=await pool.query("select * from exercise where id = $1 ",[id]);
@@ -193,6 +195,7 @@ app.get("/exercisesAdvanced",async(req,res)=>
 })
 //Update an exercise
 app.put("/exercises/:id",async(req,res)=>
+
 {
     const id =req.params.id;
     const name =req.body.name;
@@ -204,11 +207,11 @@ app.put("/exercises/:id",async(req,res)=>
 
 
 //delete an exercise
-
 app.delete("/exercises/:id",async(req,res)=>
 {
     
     const id =req.params.id;
     const deleteExercise=await pool.query("delete from exercise where id = $1 ",[id]);
     res.json("exercise was deleted");
+
 })
